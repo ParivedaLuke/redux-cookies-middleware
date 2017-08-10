@@ -24,7 +24,7 @@
     "url": "https://github.com/grofers/redux-cookies-middleware.git"
   },
   "scripts": {
-    "clear:lib": "rm -rf lib && mkdir lib",
+    "clear:lib": "rimraf lib && mkdir lib",
     "build": "npm run clear:lib && babel src --out-dir lib --source-maps",
     "postinstall": "npm run build",
     "test": "karma start karma.conf.js --log-level debug",
@@ -59,6 +59,7 @@
     "webpack": "^3.3.0"
   },
   "dependencies": {
-    "js-cookie": "^2.1.4"
+    "js-cookie": "^2.1.4",
+    "rimraf": "^2.6.1"
   }
 }
