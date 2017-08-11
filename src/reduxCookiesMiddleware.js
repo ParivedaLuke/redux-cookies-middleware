@@ -1,4 +1,5 @@
-import setCookie from './cookieApi';
+import setCookie, { getCookie } from './cookieApi';
+import _set from 'lodash-es/set'
 
 /**
  * Middleware to persist state in cookies.
@@ -33,6 +34,16 @@ const reduxCookiesMiddleware = (paths = {}, customOptions = {}) => {
         return (index === pathPartsList.length) ? value : null;
     };
 
+    calculateCookieValue = (value, cookiePath, cookieName) => {
+        if(!cookiePath) {
+            return JSON.stringify(value);
+        }
+
+        const cookie = getCookie(cookieName);
+        _set(cookie, cookiePath, value);
+        return JSON.stringify(cookie);
+    }
+
     return store => next => action => {
         const prevState = store.getState();
         const result = next(action);
@@ -47,9 +58,9 @@ const reduxCookiesMiddleware = (paths = {}, customOptions = {}) => {
 
             if (!equalityCheck(prevVal, nextVal)) {
                 if (deleteCheck(nextVal)) {
-                    options.setCookie(state.name, JSON.stringify(nextVal), 0);
+                    options.setCookie(state.name, calculateCookieValue(nextVal, state.cookiePath, state.name), 0);
                 } else {
-                    options.setCookie(state.name, JSON.stringify(nextVal));
+                    options.setCookie(state.name, calculateCookieValue(nextVal, state.cookiePath, state.name));
                 }
             }
         });

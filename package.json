@@ -60,6 +60,7 @@
   },
   "dependencies": {
     "js-cookie": "^2.1.4",
+    "lodash-es": "^4.17.4",
     "rimraf": "^2.6.1"
   }
 }
