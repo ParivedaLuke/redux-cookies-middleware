@@ -45,11 +45,13 @@ const reduxCookiesMiddleware = (paths = {}, customOptions = {}) => {
     }
 
     return store => next => action => {
+        debugger;
         const prevState = store.getState();
         const result = next(action);
         const nextState = store.getState();
 
         Object.keys(paths).forEach(pathToState => {
+            debugger;
             const prevVal = _getVal(prevState, pathToState);
             const nextVal = _getVal(nextState, pathToState);
             const state = paths[pathToState];
