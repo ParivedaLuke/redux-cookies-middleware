@@ -1,5 +1,5 @@
 import setCookie, { getCookie } from './cookieApi';
-import _set from 'lodash-es/set'
+import _set from 'lodash/set'
 
 /**
  * Middleware to persist state in cookies.
