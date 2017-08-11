@@ -34,7 +34,7 @@ const reduxCookiesMiddleware = (paths = {}, customOptions = {}) => {
         return (index === pathPartsList.length) ? value : null;
     };
 
-    calculateCookieValue = (value, cookiePath, cookieName) => {
+    const calculateCookieValue = (value, cookiePath, cookieName) => {
         if(!cookiePath) {
             return JSON.stringify(value);
         }
