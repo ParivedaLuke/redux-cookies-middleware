@@ -40,6 +40,7 @@ const reduxCookiesMiddleware = (paths = {}, customOptions = {}) => {
         }
 
         const cookie = getCookie(cookieName);
+        debugger;
         _set(cookie, cookiePath, value);
         return cookie;
     }
