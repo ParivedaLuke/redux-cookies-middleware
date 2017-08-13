@@ -1,4 +1,5 @@
 import { getCookie as getBrowserCookie } from './cookieApi';
+import _get from 'lodash/get';
 
 /**
  * return the node referenced by path in state.
@@ -36,8 +37,11 @@ const getStateFromCookies = (
         const terminalKey = pathSplit.slice(-1);
 
         // read cookies
-        const storedState = getCookie(pathConf.name);
-
+        const storedState = JSON.parse(getCookie(pathConf.name));
+        if(pathConf.cookiePath) {
+            storedState = _get(storedState, pathConf.cookiePath, '');
+        }
+        debugger;
         // get a slice of state path where to put cookie value
         const stateTree = pathSplit.length > 1 ? (
             pathSlicer(pathSplit.slice(0, -1).join('.'))(preloadedState)
