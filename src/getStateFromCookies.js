@@ -37,7 +37,7 @@ const getStateFromCookies = (
         const terminalKey = pathSplit.slice(-1);
 
         // read cookies
-        const storedState = JSON.parse(getCookie(pathConf.name));
+        let storedState = JSON.parse(getCookie(pathConf.name));
         if(pathConf.cookiePath) {
             storedState = _get(storedState, pathConf.cookiePath, '');
         }
