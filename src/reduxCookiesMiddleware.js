@@ -39,7 +39,7 @@ const reduxCookiesMiddleware = (paths = {}, customOptions = {}) => {
             return JSON.stringify(value);
         }
 
-        const cookie = getCookie(cookieName);
+        const cookie = JSON.parse(getCookie(cookieName));
         debugger;
         _set(cookie, cookiePath, value);
         return cookie;
